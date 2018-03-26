@@ -87,11 +87,15 @@ img, iframe {
     column-count: 4;
     column-gap: 1em;
     padding: 0 .5em;
+    overflow: auto;
 }
 .wrapper .item {
     display: inline-block;
     margin: 0 0 1em;
     width: 100%;
+}
+.upload-common {
+    min-height: 120px;
 }
 .type-holder {
     margin: 1.5em 1em 0 0;

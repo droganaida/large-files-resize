@@ -36,21 +36,15 @@ function changeEventHandler() {
         try {
             const result = JSON.stringify(await makeXhr(file));
 
-            try {
-                const resultFinal = JSON.parse(result);
-                console.log(`Ответ от сервера: ${result}`);
+            const resultFinal = JSON.parse(result);
+            console.log(`Ответ от сервера: ${result}`);
 
-                let imgCard = document.createElement('div');
-                imgCard.className = "item";
-                imgCard.innerHTML = `<img src="${resultFinal.path}"/>
+            let imgCard = document.createElement('div');
+            imgCard.className = "item";
+            imgCard.innerHTML = `<img src="${resultFinal.path}"/>
                                     <span>${(resultFinal.size/1000000).toFixed(2)}mb</span>
                                     <span>${resultFinal.time}ms</span>`;
-                document.getElementById('uploaded').appendChild(imgCard);
-
-            } catch (error) {
-                console.log(`Настоящая ошибка: ${error}`);
-                console.log(`Текст ошибки с сервера: ${result}`)
-            }
+            document.getElementById('uploaded').appendChild(imgCard);
 
         } catch (err) {
             console.log(`Ошибка от fetch: ${err.message}`)
