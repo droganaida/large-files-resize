@@ -1,0 +1,28 @@
+{
+  "name": "large-files-resize",
+  "version": "1.0.0",
+  "description": "Koa2 RESTful API. Upload and resize images. ImageMagic vs GraphicsMagic vs Sharp",
+  "main": "app.js",
+  "scripts": {
+    "dev": "NODE_ENV=development node app.js",
+    "pro": "NODE_ENV=production node app.js"
+  },
+  "author": {
+    "name": "Aida Drogan",
+    "email": "aida.drogan.box@gmail.com",
+    "url": "https://www.youtube.com/channel/UCSsg9NLCse2XQCIRgfmJu3Q"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "2.5.7",
+    "gm": "1.23.1",
+    "koa": "2.5.0",
+    "koa-body": "2.5.0",
+    "koa-router": "7.4.0",
+    "koa-static": "4.0.2",
+    "koa-views": "6.1.4",
+    "koa2-cors": "2.0.5",
+    "sharp": "0.20.1",
+    "winston": "2.4.1"
+  }
+}

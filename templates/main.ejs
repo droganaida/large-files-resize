@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<%- include ./common/head.ejs %>
+<body>
+<main class="wrapper flex-col flex-center">
+    <h1>Выбери файл и инструмент нарезки</h1>
+    <div class="flex-row flex-center">
+        <div class="type-holder flex-col flex-center">
+            <select id="resize-type">
+                <% options.libraries.forEach(function(library) { %>
+                <option value="<%= library.code %>"><%= library.title %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="upload-holder">
+            <span>Нажми меня</span>
+            <input id="upload-input" type="file" accept=".jpg, .jpeg, .png" name="uploader" multiple="multiple">
+        </div>
+    </div>
+    <div id="uploaded" class="masonry"></div>
+</main>
+<%- include ./common/footer.ejs %>
+<script src="/scripts/script.js"></script>
+</body>
+</html>
