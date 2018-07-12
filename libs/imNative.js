@@ -33,4 +33,44 @@ async function imNativeResize(file, filePath, resize) {
     return [filePath.substr(1), (new Date() - startTime)];
 }
 
+function promiseFromChildProcess(child) {
+    return new Promise((resolve, reject) => {
+        child.addListener('error', (code, signal) => {
+            console.log('ChildProcess error', code, signal);
+            reject();
+        });
+        child.addListener('exit', (code) => {
+            if (code === 0) {
+                resolve();
+            } else {
+                reject();
+            }
+        });
+    });
+}
+
+async function imNativeConvertPSD(file, filePath) {
+
+    let startTime = new Date();
+    const streamIn = fs.createReadStream(file);
+    const streamOut = fs.createWriteStream(filePath);
+
+    await fsAsync.saveStream(streamIn, streamOut);
+
+    const magicCommands = [
+        file + '[0]',
+        "-background",
+        "white",
+        "-flatten",
+        filePath.replace('.psd', '.jpg')
+    ];
+    await promiseFromChildProcess(spawn("convert", magicCommands));
+
+    await fsAsync.unlinkFile(file);
+    await fsAsync.unlinkFile(filePath);
+
+    return [filePath.replace('.psd', '.jpg').substr(1), (new Date() - startTime)];
+}
+
 module.exports.imNativeResize = imNativeResize;
+module.exports.imNativeConvertPSD = imNativeConvertPSD;
